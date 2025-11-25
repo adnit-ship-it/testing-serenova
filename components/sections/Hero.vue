@@ -31,7 +31,7 @@
     <!-- Content - Single Column -->
     <UiSectionContainer class="relative z-30 h-full flex justify-between">
       <div class="space-y-2 md:space-y-4 lg:space-y-10 flex flex-col h-full">
-        <div class="w-[192px] md:w-[365px]" :style="{ height: logoHeight }">
+        <div class="w-[192px] md:w-[365px]">
           <img v-motion :initial="{ opacity: 0, y: 100 }" :visible-once="{
             opacity: 1,
             y: 0,
@@ -42,7 +42,7 @@
               damping: 25,
               mass: 1,
             },
-          }" :src="hero?.media?.logo?.src" class="h-full w-full object-cover" :alt="hero?.media?.logo?.alt" />
+          }" :src="hero?.media?.logo?.src" class="h-auto w-full object-contain" :alt="hero?.media?.logo?.alt" />
         </div>
 
         <h1 v-motion :initial="{ opacity: 0, y: 100 }" :visible-once="{
@@ -160,12 +160,6 @@ const foregroundHeightDesktop = computed(() => {
   if (isMobile.value) return foregroundHeightMobile.value;
   if (window.innerWidth >= 1024) return hero.value?.media?.foreground?.heights?.desktop || '600px';
   return foregroundHeightTablet.value;
-});
-
-const logoHeight = computed(() => {
-  if (isMobile.value) return hero.value?.media?.logo?.heights?.mobile || '24px';
-  if (window.innerWidth >= 1024) return hero.value?.media?.logo?.heights?.desktop || '32px';
-  return hero.value?.media?.logo?.heights?.tablet || '28px';
 });
 
 // Mobile detection
